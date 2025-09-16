@@ -1,7 +1,6 @@
 import express from "express";
 import morgan from "morgan";
 import compression from "compression";
-import cookieParser from "cookie-parser";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import slowDown from "express-slow-down";
 import { createRequire } from "module";
@@ -53,10 +52,7 @@ async function createApp() {
   morgan.token("id", (req) => req.id);
   morgan.token("user-agent", (req) => req.get("User-Agent"));
 
-  const logFormat =
-    process.env.NODE_ENV === "production"
-      ? ':id :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :response-time ms'
-      : ":id :method :url :status :response-time ms - :res[content-length]";
+  const logFormat = ':id :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :response-time ms'
 
   app.use(
     morgan(logFormat, {
@@ -68,7 +64,7 @@ async function createApp() {
 
   app.use(
     express.json({
-      limit: process.env.JSON_LIMIT || "10mb",
+      limit: "10mb",
       verify: (req, res, buf) => {
         req.rawBody = buf;
       }
@@ -78,11 +74,9 @@ async function createApp() {
   app.use(
     express.urlencoded({
       extended: true,
-      limit: process.env.URL_ENCODED_LIMIT || "10mb"
+      limit: "10mb"
     })
   );
-
-  app.use(cookieParser(process.env.COOKIE_SECRET));
 
   app.use(
     compression({
@@ -90,7 +84,7 @@ async function createApp() {
         if (req.headers["x-no-compression"]) return false;
         return compression.filter(req, res);
       },
-      level: parseInt(process.env.COMPRESSION_LEVEL) || 6,
+      level: 6,
       threshold: 1024
     })
   );
