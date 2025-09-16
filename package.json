@@ -4,7 +4,9 @@
   "description": "A modular Express.js backend framework with plugin-based router handler for scalable and maintainable applications.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "production": "pm2 start server.js --name \"Express API\""
   },
   "repository": {
     "type": "git",
@@ -38,5 +40,9 @@
     "uuid": "^13.0.0",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "pm2": "^6.0.11"
   }
 }

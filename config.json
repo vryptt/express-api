@@ -2,16 +2,10 @@
   "title": "Express API",
   "version": "1.0.0",
   "description": "A modular Express.js backend framework with plugin-based router handler for scalable and maintainable applications.",
-  "servers": [
-    {
+  "servers": [{
       "url": "http://103.167.133.200:3000",
       "description": "Local development server"
-    },
-    {
-      "url": "https://docs.vrypt.my.id",
-      "description": "Production server"
-    }
-  ],
+    }],
   "contact": {
     "name": "API Support",
     "email": "support@vrypt.my.id",

@@ -1,19 +1,9 @@
 import { logger } from '../lib/logger.js';
+import { getHealthInfo } from '../lib/handler.js'
 
 const startTime = Date.now();
 
 export function healthCheck(req, res) {
-  const healthStatus = {
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    startTime: new Date(startTime).toISOString(),
-    memory: process.memoryUsage(),
-    version: '1.0.0',
-    environment: process.env.NODE_ENV || 'development',
-    pid: process.pid
-  };
-  
-  const statusCode = healthStatus.status === 'OK' ? 200 : 503;
-  res.status(statusCode).json(healthStatus);
+  const info = getHealthInfo()
+  res.status(200).json({ info });
 }
