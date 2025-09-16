@@ -1,0 +1,67 @@
+{
+  "title": "Express API",
+  "version": "1.0.0",
+  "description": "A modular Express.js backend framework with plugin-based router handler for scalable and maintainable applications.",
+  "servers": [
+    {
+      "url": "http://103.167.133.200:3000",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://docs.vrypt.my.id",
+      "description": "Production server"
+    }
+  ],
+  "contact": {
+    "name": "API Support",
+    "email": "support@vrypt.my.id",
+    "url": "https://docs.vrypt.my.id/support"
+  },
+  "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "autoGenerateSpec": true,
+  "publicPaths": [
+    "/health",
+    "/docs",
+    "/openapi",
+    "/ping",
+    "/api-docs"
+  ],
+  "routesDirectory": "./plugins",
+  "enableCors": true,
+  "enableLogging": true,
+  "maxFileSize": "10mb",
+  "rateLimit": {
+    "windowMs": 900000,
+    "max": 100
+  },
+  "security": {
+    "enableAuth": true,
+    "jwtSecret": "your-jwt-secret-key",
+    "apiKeyHeader": "X-API-Key"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "api_db",
+    "username": "api_user",
+    "password": "api_password"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": null
+  },
+  "email": {
+    "service": "gmail",
+    "user": "your-email@gmail.com",
+    "password": "your-app-password"
+  },
+  "storage": {
+    "type": "local",
+    "uploadPath": "./uploads",
+    "maxSize": "50mb"
+  }
+}
