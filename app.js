@@ -42,7 +42,8 @@ async function initializeRoutes(app) {
 async function createApp() {
   const app = express();
 
-  app.set("trust proxy", process.env.TRUST_PROXY || 1);
+  app.set("trust proxy", 1);
+  app.set("json spaces", 3)
   app.disable("x-powered-by");
 
   app.use(security);
@@ -142,12 +143,14 @@ async function createApp() {
     res.json(getSpec());
   });
     
-  app.use("/docs", swaggerUi.serve);
-  app.get("/docs", swaggerUi.setup(getSpec(), {
+
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(getSpec(), {
+      swaggerOptions: {
+      url: "/openapi.json",
+    },
     customCss: ".swagger-ui .topbar { display: none }",
-    customSiteTitle: config.api?.title || "API Documentation"
-    })
-  );
+    customSiteTitle: "API Documentation"
+  }));
 
   await initializeRoutes(app);
 
