@@ -1,0 +1,42 @@
+{
+  "name": "express-api",
+  "version": "1.0.0",
+  "description": "A modular Express.js backend framework with plugin-based router handler for scalable and maintainable applications.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vryptt/express-api.git"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "backend",
+    "openapi",
+    "express-api"
+  ],
+  "author": "vryptt",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/vryptt/express-api/issues"
+  },
+  "homepage": "https://github.com/vryptt/express-api#readme",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-slow-down": "^3.0.0",
+    "helmet": "^8.1.0",
+    "joi": "^18.0.1",
+    "morgan": "^1.10.1",
+    "uuid": "^13.0.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}
