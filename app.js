@@ -33,7 +33,7 @@ async function initializeRoutes(app) {
     logger.info(`Loading routes from: ${routesDir}`);
     await loadRoutesFromDir(routesDir);
     logger.info("Routes loaded successfully");
-    app.use("/api", getRouter());
+    app.use("/", getRouter());
   } catch (error) {
     logger.error("Failed to load routes:", error);
   }
@@ -44,6 +44,7 @@ async function createApp() {
 
   app.set("trust proxy", 1);
   app.set("json spaces", 3)
+  app.set("view engine", "ejs")
   app.disable("x-powered-by");
 
   app.use(security);
@@ -144,13 +145,9 @@ async function createApp() {
   });
     
 
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(getSpec(), {
-      swaggerOptions: {
-      url: "/openapi.json",
-    },
-    customCss: ".swagger-ui .topbar { display: none }",
-    customSiteTitle: "API Documentation"
-  }));
+  app.get("/docs", (req, res) => {
+    res.render("docs")
+  })
 
   await initializeRoutes(app);
 
